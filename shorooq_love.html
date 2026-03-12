@@ -1,0 +1,1901 @@
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>شروق | النسخة الأسطورية</title>
+  <meta name="theme-color" content="#5f183f" />
+  <style>
+    :root{
+      --bg1:#120811;
+      --bg2:#241022;
+      --bg3:#4d1636;
+      --bg4:#7c254f;
+      --bg5:#c04b80;
+      --glass:rgba(255,255,255,.10);
+      --glass2:rgba(255,255,255,.07);
+      --line:rgba(255,255,255,.16);
+      --text:#fff8fb;
+      --muted:#ffd9e7;
+      --soft:#fff0f6;
+      --accent:#ff78a8;
+      --accent2:#ffc4da;
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:"Tahoma",sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      min-height:100vh;
+      color:var(--text);
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.10), transparent 28%),
+        radial-gradient(circle at bottom, rgba(255,210,230,.08), transparent 35%),
+        linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4),var(--bg5));
+      position:relative;
+    }
+
+    .stars,.hearts,.petals,.sparkles{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .star,.heart,.petal,.spark{
+      position:absolute;
+      user-select:none;
+    }
+
+    .star{
+      color:rgba(255,255,255,.82);
+      animation:twinkle 4s ease-in-out infinite;
+    }
+
+    .heart{
+      color:rgba(255,215,230,.86);
+      bottom:-40px;
+      filter:drop-shadow(0 0 8px rgba(255,180,210,.25));
+      animation:rise linear infinite;
+    }
+
+    .petal{
+      color:rgba(255,220,232,.80);
+      top:-20px;
+      animation:fall linear infinite;
+      transform:rotate(0deg);
+    }
+
+    .spark{
+      color:rgba(255,240,245,.85);
+      bottom:-20px;
+      animation:drift linear infinite;
+    }
+
+    .glow{
+      position:fixed;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      filter:blur(80px);
+      opacity:.45;
+      z-index:0;
+      animation:pulse 8s ease-in-out infinite;
+    }
+
+    .glow.one{
+      top:4%;
+      left:4%;
+      background:rgba(255,182,193,.20);
+    }
+
+    .glow.two{
+      bottom:4%;
+      right:5%;
+      background:rgba(255,230,240,.14);
+      animation-delay:2s;
+    }
+
+    .intro{
+      position:fixed;
+      inset:0;
+      z-index:50;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.08), transparent 34%),
+        linear-gradient(135deg,#120811,#2e1124,#5d1b40);
+      transition:.9s ease;
+    }
+
+    .intro.hide{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+
+    .intro-card{
+      width:min(92%,760px);
+      padding:38px 24px;
+      border-radius:32px;
+      background:rgba(255,255,255,.10);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:var(--shadow);
+      text-align:center;
+      animation:introUp 1.5s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .intro-card::before{
+      content:"";
+      position:absolute;
+      inset:-30% auto auto -20%;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,.12), transparent 70%);
+      pointer-events:none;
+    }
+
+    .intro-top{
+      color:var(--muted);
+      margin-bottom:12px;
+      letter-spacing:1px;
+      font-size:.95rem;
+    }
+
+    .intro-title{
+      font-size:clamp(2.2rem,7vw,4.5rem);
+      color:#ffe7f0;
+      margin-bottom:12px;
+      text-shadow:0 0 28px rgba(255,195,220,.22);
+    }
+
+    .intro-line{
+      width:120px;
+      height:3px;
+      margin:0 auto 18px;
+      background:linear-gradient(to right,transparent,#ffd5e5,transparent);
+      border-radius:999px;
+    }
+
+    .intro-text{
+      font-size:1.08rem;
+      line-height:2.2;
+      color:#fff3f8;
+      margin-bottom:24px;
+    }
+
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:14px 24px;
+      font-size:1rem;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px) scale(1.03);
+    }
+
+    .btn-main{
+      color:#fff;
+      background:linear-gradient(135deg,#ff6798,#ff8fb6);
+      box-shadow:0 12px 28px rgba(255,103,152,.35);
+    }
+
+    .btn-soft{
+      color:#fff;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+    }
+
+    .wrap{
+      position:relative;
+      z-index:2;
+      width:min(100%,1120px);
+      margin:0 auto;
+      padding:20px 14px 80px;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding-top:24px;
+    }
+
+    .hero-card,
+    .glass{
+      background:var(--glass);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border-radius:30px;
+    }
+
+    .hero-card{
+      width:100%;
+      padding:36px 22px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      top:-40px;
+      right:-30px;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,.10), transparent 70%);
+      pointer-events:none;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:8px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.14);
+      color:var(--muted);
+      margin-bottom:16px;
+      font-size:.95rem;
+    }
+
+    .hero-title{
+      font-size:clamp(2.5rem,8vw,5rem);
+      line-height:1.18;
+      margin-bottom:16px;
+      color:#ffe6f1;
+      text-shadow:0 0 30px rgba(255,195,220,.22);
+    }
+
+    .hero-subtitle{
+      max-width:780px;
+      margin:0 auto;
+      line-height:2.2;
+      font-size:1.1rem;
+      color:#fff4f8;
+    }
+
+    .hero-name{
+      color:#ffc9dc;
+      font-weight:bold;
+    }
+
+    .hero-buttons{
+      margin-top:24px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .music-note{
+      margin-top:14px;
+      color:#ffe5ef;
+      font-size:.94rem;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .glass{
+      padding:28px 18px;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:clamp(1.65rem,5vw,2.6rem);
+      color:#ffe4ee;
+      margin-bottom:10px;
+    }
+
+    .section-subtitle{
+      text-align:center;
+      color:#fff0f6;
+      line-height:2;
+      margin-bottom:22px;
+    }
+
+    .letter{
+      max-width:860px;
+      margin:0 auto;
+      text-align:center;
+      line-height:2.35;
+      font-size:1.08rem;
+      color:#fff;
+    }
+
+    .letter .highlight{
+      color:#ffd1e2;
+      font-weight:bold;
+    }
+
+    .type-box{
+      background:var(--glass2);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      padding:22px 16px;
+      text-align:center;
+      min-height:110px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.08rem;
+      line-height:2.1;
+      color:#fffafc;
+    }
+
+    .counter-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin-top:20px;
+    }
+
+    .counter-box{
+      background:var(--glass2);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      padding:18px 10px;
+      text-align:center;
+    }
+
+    .counter-num{
+      font-size:clamp(1.7rem,5vw,2.35rem);
+      font-weight:bold;
+      color:#fff1f7;
+      margin-bottom:6px;
+    }
+
+    .counter-label{
+      color:#ffd8e7;
+      font-size:.95rem;
+    }
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .timeline-card{
+      position:relative;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:26px;
+      padding:20px;
+      overflow:hidden;
+    }
+
+    .timeline-card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      right:0;
+      width:140px;
+      height:140px;
+      background:radial-gradient(circle, rgba(255,255,255,.08), transparent 65%);
+      pointer-events:none;
+    }
+
+    .timeline-index{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      color:#ffcadc;
+      font-size:.94rem;
+      margin-bottom:10px;
+    }
+
+    .timeline-title{
+      color:#ffe7f1;
+      font-size:1.18rem;
+      font-weight:bold;
+      margin-bottom:8px;
+    }
+
+    .timeline-date{
+      color:#ffc8db;
+      margin-bottom:10px;
+    }
+
+    .timeline-text{
+      color:#fff8fb;
+      line-height:2.05;
+      font-size:1rem;
+    }
+
+    .quote-box{
+      max-width:860px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .quote{
+      min-height:82px;
+      font-size:1.1rem;
+      line-height:2.2;
+      color:#fff9fc;
+      margin-bottom:18px;
+    }
+
+    .signature{
+      margin-top:20px;
+      text-align:center;
+      color:#ffd8e7;
+      line-height:2;
+      font-size:1rem;
+    }
+
+    .final-glow{
+      margin-top:22px;
+      text-align:center;
+      color:#fff2f7;
+      font-size:1.05rem;
+      line-height:2.2;
+    }
+
+    footer{
+      text-align:center;
+      margin-top:30px;
+      color:#ffd7e6;
+      font-size:.95rem;
+      line-height:2;
+      opacity:.96;
+    }
+
+    @keyframes introUp{
+      from{opacity:0; transform:translateY(28px) scale(.98);}
+      to{opacity:1; transform:translateY(0) scale(1);}
+    }
+
+    @keyframes twinkle{
+      0%,100%{opacity:.25; transform:scale(.85);}
+      50%{opacity:1; transform:scale(1.15);}
+    }
+
+    @keyframes rise{
+      0%{transform:translateY(0) scale(1); opacity:0;}
+      10%{opacity:1;}
+      100%{transform:translateY(-120vh) scale(1.35); opacity:0;}
+    }
+
+    @keyframes fall{
+      0%{transform:translateY(-20px) translateX(0) rotate(0deg); opacity:0;}
+      10%{opacity:1;}
+      100%{transform:translateY(110vh) translateX(40px) rotate(220deg); opacity:0;}
+    }
+
+    @keyframes drift{
+      0%{transform:translateY(0) rotate(0deg); opacity:0;}
+      20%{opacity:1;}
+      100%{transform:translateY(-110vh) rotate(160deg); opacity:0;}
+    }
+
+    @keyframes pulse{
+      0%,100%{transform:scale(1);}
+      50%{transform:scale(1.18);}
+    }
+
+    @media (max-width:860px){
+      .counter-grid,
+      .timeline{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:560px){
+      .counter-grid,
+      .timeline{
+        grid-template-columns:1fr;
+      }
+
+      .hero-card,
+      .glass,
+      .intro-card{
+        padding:24px 15px;
+      }
+
+      .hero-subtitle,
+      .section-subtitle,
+      .letter,
+      .type-box,
+      .timeline-text,
+      .quote{
+        font-size:.98rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <div class="stars" id="stars"></div>
+  <div class="hearts" id="hearts"></div>
+  <div class="petals" id="petals"></div>
+  <div class="sparkles" id="sparkles"></div>
+
+  <div class="intro" id="intro">
+    <div class="intro-card">
+      <div class="intro-top">صفحة صنعت خصيصًا لشروق</div>
+      <h1 class="intro-title">إلى جنة العالم ❤️</h1>
+      <div class="intro-line"></div>
+      <p class="intro-text">
+        هذه ليست مجرد صفحة...
+        هذه مساحة صغيرة من القلب،
+        كُتبت فيها مشاعر أكبر من الكلام،
+        وصيغت فيها حروف اسمٍ إذا مرّ على الروح أضاءها...
+        وذاك الاسم هو <strong>شروق</strong>.
+      </p>
+      <button class="btn btn-main" onclick="enterPage()">ادخلي يا شروق ✨</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="badge">النسخة الأسطورية • شروق • جنة القلب</div>
+        <h1 class="hero-title">شروق... يا أجمل نعمة عرفها القلب</h1>
+        <p class="hero-subtitle">
+          هناك أشخاص يمرّون في الحياة مرورًا عاديًا،
+          وهناك <span class="hero-name">شروق</span>...
+          تأتي كأنها نور الصباح،
+          وكأنها راحة بعد تعب،
+          وكأنها الجمال حين قرر أن يكون اسمًا يُحَبّ ويُدعَى ويُخاف عليه من كل شيء.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-main" onclick="showQuote()">رسالة حب جديدة 💖</button>
+          <button class="btn btn-soft" onclick="playMusic()">تشغيل الموسيقى 🎵</button>
+          <a href="#dates" class="btn btn-soft" style="text-decoration:none;display:inline-block;">أجمل التواريخ 🌷</a>
+        </div>
+
+        <div class="music-note">
+          للموسيقى: أضف ملفًا باسم <strong>music.mp3</strong> داخل نفس المجلد
+        </div>
+
+        <audio id="bgMusic" loop>
+          <source src="music.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">رسالة لا تشبه إلا شروق</h2>
+        <p class="section-subtitle">كلمات كُتبت لتبقى أجمل من الذكرى، وأهدأ من المساء، وأصدق من كل الوصف.</p>
+
+        <div class="letter">
+          يا شروق،<br><br>
+
+          منذ اللحظة التي صار فيها اسمكِ قريبًا من القلب،
+          تغيّر شيء كثير في داخلي...
+          صار للوقت معنى ألطف،
+          وصار للانتظار طعم مختلف،
+          وصارت الأيام العادية تحمل شيئًا منكِ فيزداد نورها وجمالها.<br><br>
+
+          أنتِ لستِ مجرد فتاة جميلة،
+          أنتِ <span class="highlight">جنة العالم</span> حين تضيق الدنيا،
+          وهدوء الروح حين يكثر الضجيج،
+          وراحة القلب حين يبحث عن مكان آمن يختبئ فيه من كل التعب.<br><br>
+
+          فيكِ شيء لا يُفسَّر بسهولة...
+          شيء يجعل حضوركِ مختلفًا،
+          وذكركِ مختلفًا،
+          وحتى الصمت عندما يمرّ اسمكِ فيه يصبح أكثر دفئًا وأكثر حياة.<br><br>
+
+          ولو سألني أحد:
+          ما أجمل شيء عرفه قلبك؟
+          فلن أتردد...
+          سأقول:
+          <span class="highlight">شروق</span>،
+          لأنكِ لستِ مجرد اسم،
+          بل دعاء جميل،
+          ونعمة نادرة،
+          وحكاية أحبّها القلب حتى صار يخاف عليها أكثر من نفسه.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">الكلام الذي يكتب نفسه عندما تُذكرين</h2>
+        <p class="section-subtitle">هذه الرسالة تظهر حرفًا حرفًا، لأن بعض المشاعر تستحق أن تصل بهدوء.</p>
+        <div class="type-box" id="typewriterBox"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">منذ بداية الحكاية</h2>
+        <p class="section-subtitle">من 2 سبتمبر 2024... والقلب يكتب فصوله مع اسم شروق.</p>
+
+        <div class="counter-grid">
+          <div class="counter-box">
+            <div class="counter-num" id="days">0</div>
+            <div class="counter-label">يوم</div>
+          </div>
+          <div class="counter-box">
+            <div class="counter-num" id="hours">0</div>
+            <div class="counter-label">ساعة</div>
+          </div>
+          <div class="counter-box">
+            <div class="counter-num" id="minutes">0</div>
+            <div class="counter-label">دقيقة</div>
+          </div>
+          <div class="counter-box">
+            <div class="counter-num" id="seconds">0</div>
+            <div class="counter-label">ثانية</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dates">
+      <div class="glass">
+        <h2 class="section-title">أربع تواريخ لا ينساها القلب</h2>
+        <p class="section-subtitle">كل تاريخ هنا ليس رقمًا فقط... بل شعورًا، وذكرى، ونبضة مختلفة.</p>
+
+        <div class="timeline">
+          <div class="timeline-card">
+            <div class="timeline-index">01</div>
+            <div class="timeline-title">يوم ميلاد الجمال</div>
+            <div class="timeline-date">24 يناير 1997</div>
+            <div class="timeline-text">
+              في إحدى ساعات هذا اليوم، وُلدت شروق...
+              وكأن الدنيا منذ تلك اللحظة صارت تملك سببًا إضافيًا لتكون أجمل،
+              لأن النور أحيانًا يأتي على هيئة إنسانة.
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-index">02</div>
+            <div class="timeline-title">بداية حكاية العشق</div>
+            <div class="timeline-date">2 سبتمبر 2024</div>
+            <div class="timeline-text">
+              عبر حالة واتساب بدأت الحكاية،
+              ومن شيء بسيط جدًا...
+              بدأ شعور كبير جدًا.
+              بعض البدايات لا تبدو عظيمة، لكنها تغيّر القلب كله.
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-index">03</div>
+            <div class="timeline-title">لحظة الأمان</div>
+            <div class="timeline-date">7 أكتوبر 2024</div>
+            <div class="timeline-text">
+              لم تكن مجرد لمسة يد...
+              كانت لحظة شعر فيها القلب أن الأمان قد يأتي أحيانًا في ثانية واحدة،
+              لكنه يظل يسكن الذاكرة طويلًا جدًا.
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-index">04</div>
+            <div class="timeline-title">موعد مع الفاتنة</div>
+            <div class="timeline-date">26 ديسمبر 2024</div>
+            <div class="timeline-text">
+              عند شروق هذا اليوم، كان هناك موعد لا يشبه أي موعد،
+              لأن اللقاء حين يكون مع شروق،
+              يصبح الصباح نفسه ذكرى،
+              وتصبح الذكرى شيئًا يضيء العمر.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">كلام يتجدد كل مرة</h2>
+        <p class="section-subtitle">كل ضغطة تعطي رسالة جديدة... كأن القلب يعيد وصف شروق بطريقة أجمل.</p>
+
+        <div class="quote-box">
+          <div class="quote" id="quoteBox">
+            شروق... يكفي أن اسمكِ يمر على القلب حتى تتبدل قسوة اليوم إلى هدوء جميل.
+          </div>
+
+          <div class="hero-buttons">
+            <button class="btn btn-main" onclick="showQuote()">رسالة أخرى 💌</button>
+            <button class="btn btn-soft" onclick="scrollToTopSmooth()">العودة للبداية ✨</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">الخاتمة التي لا تكفيكِ</h2>
+        <p class="section-subtitle">لأن بعض الأسماء لا تكفيها صفحة واحدة... ولا تكفيها قصيدة واحدة.</p>
+
+        <div class="letter">
+          يا شروق،<br><br>
+
+          لو كان للجنة اسم يمشي بين الناس لكان اسمها أنتِ،
+          ولو كان للراحة وجه قريب من القلب لكان وجهكِ،
+          ولو كان للأيام الجميلة صوت لكان صوت حضوركِ في الروح.<br><br>
+
+          أنتِ الجمال حين يكون صادقًا،
+          وأنتِ الحنان حين يمرّ بهدوء،
+          وأنتِ تلك النعمة التي يخاف عليها القلب
+          لأنها أثمن من أن تُوصف بكلمات عابرة.<br><br>
+
+          سيبقى اسمكِ في القلب
+          لا لأنه جميل فقط،
+          بل لأنه صار جزءًا من الشعور،
+          وجزءًا من الدعاء،
+          وجزءًا من كل شيء يتمنى الإنسان ألا يفقده أبدًا.
+        </div>
+
+        <div class="signature">
+          من ماجد... إلى شروق 🌹<br>
+          إلى جنة العالم، وإلى الحكاية الأجمل، وإلى الاسم الذي يكفي وحده ليختصر كل الجمال.
+        </div>
+
+        <div class="final-glow">
+          شروق... أنتِ ليستِ مجرد ذكرى جميلة،<br>
+          أنتِ الشيء الجميل الذي كلما مرّ على القلب، شعر أنه ما زال حيًا. ❤️
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      صنعت هذه الصفحة بكل الحب، لتبقى ذكرى ناعمة باسم شروق ✨
+    </footer>
+  </div>
+
+  <script>
+    const quotes = [
+      "شروق... يكفي أن اسمكِ يمر على القلب حتى تتبدل قسوة اليوم إلى هدوء جميل.",
+      "أنتِ جنة العالم في عين من أحبكِ، ونعمة لا تشبه شيئًا عابرًا.",
+      "في حضوركِ يصبح كل شيء ألطف، وكأن الحياة تتذكر فجأة كيف تكون جميلة.",
+      "شروق، كأن الله وضع في اسمكِ نورًا، وفي روحكِ سلامًا، وفي قربكِ راحة لا توصف.",
+      "أنتِ ليستِ مجرد حكاية حب، أنتِ الحكاية التي تعلّم القلب كيف يبتسم.",
+      "بعض الناس يُنسَون، أما أنتِ فتبقين كأنكِ أثر من الجنة مرّ على الروح.",
+      "لو سألوني عن أجمل نعمة مرّت على القلب، لقلت: اسمها شروق.",
+      "فيكِ شيء يجعل الدعاء أجمل، والذكرى أدفأ، والوقت معكِ أحنّ.",
+      "أنتِ الفاتنة التي جعلت من الصباح ذكرى، ومن الذكرى وطنًا للقلب.",
+      "اسمكِ ليس مجرد حروف... اسمكِ شعور جميل يسكن القلب كلما ذُكر."
+    ];
+
+    const typeText = "شروق... في عالم مزدحم بكل شيء، كنتِ أنتِ الشيء الأجمل، والأهدأ، والأصدق، والأقرب إلى القلب.";
+
+    let typeIndex = 0;
+    let typingStarted = false;
+
+    function enterPage(){
+      document.getElementById("intro").classList.add("hide");
+      if(!typingStarted){
+        typingStarted = true;
+        startTypewriter();
+      }
+    }
+
+    function showQuote(){
+      const box = document.getElementById("quoteBox");
+      const random = quotes[Math.floor(Math.random() * quotes.length)];
+      box.textContent = random;
+    }
+
+    function playMusic(){
+      const audio = document.getElementById("bgMusic");
+      audio.play().catch(() => {
+        alert("أضف ملف موسيقى باسم music.mp3 داخل نفس المجلد ليعمل الزر 🎵");
+      });
+    }
+
+    function scrollToTopSmooth(){
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+
+    function startTypewriter(){
+      const box = document.getElementById("typewriterBox");
+      box.textContent = "";
+      typeIndex = 0;
+
+      function type(){
+        if(typeIndex < typeText.length){
+          box.textContent += typeText.charAt(typeIndex);
+          typeIndex++;
+          setTimeout(type, 55);
+        }
+      }
+      type();
+    }
+
+    function updateCounter(){
+      const startDate = new Date("2024-09-02T00:00:00");
+      const now = new Date();
+      const diff = now - startDate;
+
+      const totalSeconds = Math.max(0, Math.floor(diff / 1000));
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    function createStars(){
+      const container = document.getElementById("stars");
+      for(let i=0;i<38;i++){
+        const star = document.createElement("div");
+        star.className = "star";
+        star.innerHTML = "✦";
+        star.style.top = Math.random() * 100 + "vh";
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.fontSize = (Math.random() * 10 + 8) + "px";
+        star.style.animationDelay = (Math.random() * 4) + "s";
+        container.appendChild(star);
+      }
+    }
+
+    function createHeart(){
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 18 + 14) + "px";
+      heart.style.animationDuration = (Math.random() * 4 + 6) + "s";
+      document.getElementById("hearts").appendChild(heart);
+
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    function createPetal(){
+      const petal = document.createElement("div");
+      petal.className = "petal";
+      petal.innerHTML = "✿";
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.fontSize = (Math.random() * 10 + 12) + "px";
+      petal.style.animationDuration = (Math.random() * 5 + 7) + "s";
+      document.getElementById("petals").appendChild(petal);
+
+      setTimeout(() => petal.remove(), 13000);
+    }
+
+    function createSpark(){
+      const spark = document.createElement("div");
+      spark.className = "spark";
+      spark.innerHTML = "✧";
+      spark.style.left = Math.random() * 100 + "vw";
+      spark.style.fontSize = (Math.random() * 8 + 10) + "px";
+      spark.style.animationDuration = (Math.random() * 4 + 7) + "s";
+      document.getElementById("sparkles").appendChild(spark);
+
+      setTimeout(() => spark.remove(), 12000);
+    }
+
+    createStars();
+    updateCounter();
+    setInterval(updateCounter, 1000);
+    setInterval(createHeart, 340);
+    setInterval(createPetal, 900);
+    setInterval(createSpark, 650);
+
+    setTimeout(() => {
+      if(!typingStarted){
+        typingStarted = true;
+        startTypewriter();
+      }
+    }, 1200);
+  </script>
+</body>
+</html>
+
+ولكي يصير عندك رابط مباشر بأقل تعب:
+	1.	افتح تطبيق Files
+	2.	أنشئ مجلد باسم shorooq
+	3.	داخله احفظ هذا الملف باسم index.html
+	4.	لو تبي موسيقى أضف ملف باسم music.mp3
+	5.	افتح موقع Netlify Drop
+
+https://app.netlify.com/drop
+
+	6.	ارفع المجلد أو الملف
+	7.	سيعطيك رابط مباشر ترسله لشروق
+
+إذا تبغى بعد هذه النسخة، أقدر أسوي لك نسخة ملكية داكنة جدًا أو نسخة وردية ناعمة جدً
+
+
+وبكل وضوح:
+لا أستطيع أنا نفسي إنشاء رابط مباشر ومختصر على الإنترنت من داخل الدردشة، لكن هذا الكود جاهز 100% للنشر فورًا، وبمجرد رفعه على Netlify سيعطيك رابطًا مباشرًا. وبعدها تقدر تختصره بأي خدمة اختصار روابط.
+
+احفظ الملف باسم index.html
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shorooq | جنة العالم</title>
+  <meta name="theme-color" content="#5a183d" />
+  <style>
+    :root{
+      --bg1:#120810;
+      --bg2:#241022;
+      --bg3:#4a1634;
+      --bg4:#7c2550;
+      --bg5:#c44d84;
+      --glass:rgba(255,255,255,.10);
+      --glass2:rgba(255,255,255,.07);
+      --line:rgba(255,255,255,.16);
+      --text:#fff8fb;
+      --muted:#ffdbe8;
+      --soft:#fff1f7;
+      --accent:#ff78a8;
+      --accent2:#ffc6db;
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:"Tahoma",sans-serif;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    html{ scroll-behavior:smooth; }
+
+    body{
+      min-height:100vh;
+      color:var(--text);
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.10), transparent 28%),
+        radial-gradient(circle at bottom, rgba(255,215,232,.08), transparent 35%),
+        linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4),var(--bg5));
+      position:relative;
+    }
+
+    .stars,.hearts,.petals,.sparkles,.butterflies{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .star,.heart,.petal,.spark,.butterfly{
+      position:absolute;
+      user-select:none;
+    }
+
+    .star{
+      color:rgba(255,255,255,.82);
+      animation:twinkle 4s ease-in-out infinite;
+    }
+
+    .heart{
+      color:rgba(255,220,232,.88);
+      bottom:-40px;
+      filter:drop-shadow(0 0 8px rgba(255,180,210,.25));
+      animation:rise linear infinite;
+    }
+
+    .petal{
+      color:rgba(255,226,236,.82);
+      top:-20px;
+      animation:fall linear infinite;
+    }
+
+    .spark{
+      color:rgba(255,245,248,.9);
+      bottom:-20px;
+      animation:drift linear infinite;
+    }
+
+    .butterfly{
+      color:rgba(255,230,240,.78);
+      animation:butterflyMove linear infinite;
+      font-size:16px;
+    }
+
+    .glow{
+      position:fixed;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      filter:blur(80px);
+      opacity:.45;
+      z-index:0;
+      animation:pulse 8s ease-in-out infinite;
+    }
+
+    .glow.one{
+      top:4%;
+      left:4%;
+      background:rgba(255,182,193,.20);
+    }
+
+    .glow.two{
+      bottom:4%;
+      right:5%;
+      background:rgba(255,235,242,.14);
+      animation-delay:2s;
+    }
+
+    .intro{
+      position:fixed;
+      inset:0;
+      z-index:60;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.08), transparent 34%),
+        linear-gradient(135deg,#120811,#2f1125,#5b1b3f);
+      transition:.9s ease;
+    }
+
+    .intro.hide{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+
+    .intro-card{
+      width:min(92%,780px);
+      padding:38px 24px;
+      border-radius:34px;
+      background:rgba(255,255,255,.10);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:var(--shadow);
+      text-align:center;
+      animation:introUp 1.5s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .intro-top{
+      color:var(--muted);
+      margin-bottom:12px;
+      letter-spacing:1px;
+      font-size:.95rem;
+    }
+
+    .intro-title{
+      font-size:clamp(2.25rem,7vw,4.6rem);
+      color:#ffe7f0;
+      margin-bottom:12px;
+      text-shadow:0 0 28px rgba(255,195,220,.22);
+    }
+
+    .intro-line{
+      width:120px;
+      height:3px;
+      margin:0 auto 18px;
+      background:linear-gradient(to right,transparent,#ffd5e5,transparent);
+      border-radius:999px;
+    }
+
+    .intro-text{
+      font-size:1.08rem;
+      line-height:2.2;
+      color:#fff3f8;
+      margin-bottom:24px;
+    }
+
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:14px 24px;
+      font-size:1rem;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px) scale(1.03);
+    }
+
+    .btn-main{
+      color:#fff;
+      background:linear-gradient(135deg,#ff6798,#ff8fb6);
+      box-shadow:0 12px 28px rgba(255,103,152,.35);
+    }
+
+    .btn-soft{
+      color:#fff;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+    }
+
+    .wrap{
+      position:relative;
+      z-index:2;
+      width:min(100%,1150px);
+      margin:0 auto;
+      padding:20px 14px 90px;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding-top:24px;
+    }
+
+    .hero-card,
+    .glass{
+      background:var(--glass);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border-radius:30px;
+    }
+
+    .hero-card{
+      width:100%;
+      padding:38px 22px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:8px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.14);
+      color:var(--muted);
+      margin-bottom:16px;
+      font-size:.95rem;
+    }
+
+    .hero-title{
+      font-size:clamp(2.5rem,8vw,5rem);
+      line-height:1.18;
+      margin-bottom:16px;
+      color:#ffe6f1;
+      text-shadow:0 0 30px rgba(255,195,220,.22);
+    }
+
+    .hero-subtitle{
+      max-width:800px;
+      margin:0 auto;
+      line-height:2.2;
+      font-size:1.1rem;
+      color:#fff4f8;
+    }
+
+    .hero-name{
+      color:#ffc9dc;
+      font-weight:bold;
+    }
+
+    .hero-buttons{
+      margin-top:24px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .music-note{
+      margin-top:14px;
+      color:#ffe5ef;
+      font-size:.94rem;
+    }
+
+    .section{ margin-top:28px; }
+
+    .glass{ padding:30px 20px; }
+
+    .section-title{
+      text-align:center;
+      font-size:clamp(1.7rem,5vw,2.7rem);
+      color:#ffe4ee;
+      margin-bottom:10px;
+    }
+
+    .section-subtitle{
+      text-align:center;
+      color:#fff0f6;
+      line-height:2;
+      margin-bottom:24px;
+    }
+
+    .letter{
+      max-width:900px;
+      margin:0 auto;
+      text-align:center;
+      line-height:2.35;
+      font-size:1.08rem;
+      color:#fff;
+    }
+
+    .letter .highlight{
+      color:#ffd1e2;
+      font-weight:bold;
+    }
+
+    .poem{
+      max-width:920px;
+      margin:0 auto;
+      background:var(--glass2);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:26px;
+      padding:22px 18px;
+      text-align:center;
+      line-height:2.4;
+      font-size:1.08rem;
+      color:#fff9fc;
+      white-space:pre-line;
+    }
+
+    .type-box{
+      background:var(--glass2);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      padding:22px 16px;
+      text-align:center;
+      min-height:115px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.08rem;
+      line-height:2.1;
+      color:#fffafc;
+    }
+
+    .counter-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin-top:20px;
+    }
+
+    .counter-box{
+      background:var(--glass2);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      padding:18px 10px;
+      text-align:center;
+    }
+
+    .counter-num{
+      font-size:clamp(1.7rem,5vw,2.35rem);
+      font-weight:bold;
+      color:#fff1f7;
+      margin-bottom:6px;
+    }
+
+    .counter-label{
+      color:#ffd8e7;
+      font-size:.95rem;
+    }
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .timeline-card{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:26px;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .timeline-index{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      color:#ffcadc;
+      font-size:.94rem;
+      margin-bottom:10px;
+    }
+
+    .timeline-title{
+      color:#ffe7f1;
+      font-size:1.18rem;
+      font-weight:bold;
+      margin-bottom:8px;
+    }
+
+    .timeline-date{
+      color:#ffc8db;
+      margin-bottom:10px;
+    }
+
+    .timeline-text{
+      color:#fff8fb;
+      line-height:2.05;
+      font-size:1rem;
+    }
+
+    .quote-box{
+      max-width:860px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .quote{
+      min-height:82px;
+      font-size:1.1rem;
+      line-height:2.2;
+      color:#fff9fc;
+      margin-bottom:18px;
+    }
+
+    .signature{
+      margin-top:20px;
+      text-align:center;
+      color:#ffd8e7;
+      line-height:2;
+      font-size:1rem;
+    }
+
+    .final-glow{
+      margin-top:22px;
+      text-align:center;
+      color:#fff2f7;
+      font-size:1.05rem;
+      line-height:2.2;
+    }
+
+    footer{
+      text-align:center;
+      margin-top:30px;
+      color:#ffd7e6;
+      font-size:.95rem;
+      line-height:2;
+      opacity:.96;
+    }
+
+    @keyframes introUp{
+      from{opacity:0; transform:translateY(28px) scale(.98);}
+      to{opacity:1; transform:translateY(0) scale(1);}
+    }
+
+    @keyframes twinkle{
+      0%,100%{opacity:.25; transform:scale(.85);}
+      50%{opacity:1; transform:scale(1.15);}
+    }
+
+    @keyframes rise{
+      0%{transform:translateY(0) scale(1); opacity:0;}
+      10%{opacity:1;}
+      100%{transform:translateY(-120vh) scale(1.35); opacity:0;}
+    }
+
+    @keyframes fall{
+      0%{transform:translateY(-20px) translateX(0) rotate(0deg); opacity:0;}
+      10%{opacity:1;}
+      100%{transform:translateY(110vh) translateX(40px) rotate(220deg); opacity:0;}
+    }
+
+    @keyframes drift{
+      0%{transform:translateY(0) rotate(0deg); opacity:0;}
+      20%{opacity:1;}
+      100%{transform:translateY(-110vh) rotate(160deg); opacity:0;}
+    }
+
+    @keyframes butterflyMove{
+      0%{transform:translate(0,0) rotate(0deg); opacity:0;}
+      10%{opacity:1;}
+      50%{transform:translate(35vw,-45vh) rotate(18deg);}
+      100%{transform:translate(70vw,-95vh) rotate(-10deg); opacity:0;}
+    }
+
+    @keyframes pulse{
+      0%,100%{transform:scale(1);}
+      50%{transform:scale(1.18);}
+    }
+
+    @media (max-width:860px){
+      .counter-grid,
+      .timeline{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:560px){
+      .counter-grid,
+      .timeline{
+        grid-template-columns:1fr;
+      }
+
+      .hero-card,
+      .glass,
+      .intro-card{
+        padding:24px 15px;
+      }
+
+      .hero-subtitle,
+      .section-subtitle,
+      .letter,
+      .poem,
+      .type-box,
+      .timeline-text,
+      .quote{
+        font-size:.98rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <div class="stars" id="stars"></div>
+  <div class="hearts" id="hearts"></div>
+  <div class="petals" id="petals"></div>
+  <div class="sparkles" id="sparkles"></div>
+  <div class="butterflies" id="butterflies"></div>
+
+  <div class="intro" id="intro">
+    <div class="intro-card">
+      <div class="intro-top">صفحة صنعت خصيصًا لشروق</div>
+      <h1 class="intro-title">إلى جنة العالم ❤️</h1>
+      <div class="intro-line"></div>
+      <p class="intro-text">
+        هذه ليست مجرد صفحة...
+        هذه قطعة من القلب كُتبت باسمكِ،
+        ومساحة صغيرة تقول لكِ إن هناك اسمًا حين يُذكر
+        يشعر القلب أنه اقترب من الجنة،
+        وهذا الاسم هو <strong>شروق</strong>.
+      </p>
+      <button class="btn btn-main" onclick="enterPage()">ادخلي يا شروق ✨</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="badge">موقع شروق الأسطوري الكامل • جنة القلب</div>
+        <h1 class="hero-title">شروق... يا أجمل نعمة عرفها القلب</h1>
+        <p class="hero-subtitle">
+          هناك أشخاص يمرّون في الحياة مرورًا عاديًا،
+          وهناك <span class="hero-name">شروق</span>...
+          تأتي كأنها نور الصباح،
+          وراحة العمر،
+          وهدوء الروح،
+          والجمال حين قرر أن يكون اسمًا يُحب ويُدعى ويُخاف عليه من كل شيء.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-main" onclick="showQuote()">رسالة حب جديدة 💖</button>
+          <button class="btn btn-soft" onclick="playMusic()">تشغيل الموسيقى 🎵</button>
+          <a href="#dates" class="btn btn-soft" style="text-decoration:none;display:inline-block;">أجمل التواريخ 🌷</a>
+        </div>
+
+        <div class="music-note">
+          للموسيقى: أضف ملفًا باسم <strong>music.mp3</strong> داخل نفس المجلد
+        </div>
+
+        <audio id="bgMusic" loop>
+          <source src="music.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">رسالة لا تشبه إلا شروق</h2>
+        <p class="section-subtitle">كلمات كُتبت لتبقى أجمل من الذكرى، وأهدأ من المساء، وأصدق من كل الوصف.</p>
+
+        <div class="letter">
+          يا شروق،<br><br>
+          منذ أن صار اسمكِ قريبًا من القلب،
+          تغير شيء كثير في داخلي...
+          صار للوقت معنى ألطف،
+          وصار للانتظار طعم مختلف،
+          وصارت الأيام العادية تحمل شيئًا منكِ فيزداد نورها وجمالها.<br><br>
+
+          أنتِ لستِ مجرد فتاة جميلة،
+          أنتِ <span class="highlight">جنة العالم</span> حين تضيق الدنيا،
+          وهدوء الروح حين يكثر الضجيج،
+          وراحة القلب حين يبحث عن مكان آمن يختبئ فيه من كل التعب.<br><br>
+
+          ولو سألني أحد:
+          ما أجمل شيء عرفه قلبك؟
+          فسأقول دون تردد:
+          <span class="highlight">شروق</span>،
+          لأنكِ لستِ مجرد اسم،
+          بل نعمة،
+          ودعاء،
+          وحكاية أحبها القلب حتى صار يخاف عليها أكثر من نفسه.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">حين أكون أمامكِ</h2>
+        <p class="section-subtitle">العبارة التي طلبتها منك، صغتها داخل الموقع بشكل حالم ومتحرك في الجو العام.</p>
+
+        <div class="poem">
+عندما أجد نفسي أمامكِ
+أرى شعاع النور يحيط أرجاء الكون،
+وحروف الحب تحلق فوقنا كالفراشات،
+ويأتي حرف الألف ليقف بجانب الحاء،
+والباء بجانبهما،
+وعند انتهاء حرف الكاف
+من تزيين باقي الكلمة...
+يتناثر عطرها الجميل،
+وتقف أمامكِ سيدتي
+لتعبر لكِ عمّا بداخلي:
+<span class="highlight">أحبكِ</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">قيل في حرف الشين</h2>
+        <p class="section-subtitle">لأن الشين هنا ليست حرفًا فقط... بل بداية اسم يختصر الجمال كله.</p>
+
+        <div class="poem">
+قيل في حرف الشين:
+
+"أنتِ شَهدي وشتائي،
+شتاتي وشاطِئي،
+شاعرتي وشُبّاكي،
+شجاعتي، وشرياني،
+وشمعتي وشَمسي،
+وشُعاعي،
+أنتِ شغفي،
+وشبيهة القمر"
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">المخبأ الجميل في الصدر</h2>
+        <p class="section-subtitle">عبارتك وضعتها كما هي بروح أكثر نعومة داخل الموقع.</p>
+
+        <div class="poem">
+ويختبئ في صدري ثلاثة أشياء:
+أمنية بيضاء،
+وحلم بريء،
+وأنتِ ♡
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">الكلام الذي يكتب نفسه عندما تُذكرين</h2>
+        <p class="section-subtitle">هذه الرسالة تظهر حرفًا حرفًا، لأن بعض المشاعر تستحق أن تصل بهدوء.</p>
+        <div class="type-box" id="typewriterBox"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">منذ بداية الحكاية</h2>
+        <p class="section-subtitle">من 2 سبتمبر 2024... والقلب يكتب فصوله مع اسم شروق.</p>
+
+        <div class="counter-grid">
+          <div class="counter-box">
+            <div class="counter-num" id="days">0</div>
+            <div class="counter-label">يوم</div>
+          </div>
+          <div class="counter-box">
+            <div class="counter-num" id="hours">0</div>
+            <div class="counter-label">ساعة</div>
+          </div>
+          <div class="counter-box">
+            <div class="counter-num" id="minutes">0</div>
+            <div class="counter-label">دقيقة</div>
+          </div>
+          <div class="counter-box">
+            <div class="counter-num" id="seconds">0</div>
+            <div class="counter-label">ثانية</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dates">
+      <div class="glass">
+        <h2 class="section-title">أربع تواريخ لا ينساها القلب</h2>
+        <p class="section-subtitle">كل تاريخ هنا ليس رقمًا فقط... بل شعورًا، وذكرى، ونبضة مختلفة.</p>
+
+        <div class="timeline">
+          <div class="timeline-card">
+            <div class="timeline-index">01</div>
+            <div class="timeline-title">يوم ميلاد الجمال</div>
+            <div class="timeline-date">24 يناير 1997</div>
+            <div class="timeline-text">
+              في إحدى ساعات هذا اليوم، وُلدت شروق...
+              وكأن الدنيا منذ تلك اللحظة صارت تملك سببًا إضافيًا لتكون أجمل،
+              لأن النور أحيانًا يأتي على هيئة إنسانة.
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-index">02</div>
+            <div class="timeline-title">بداية حكاية العشق</div>
+            <div class="timeline-date">2 سبتمبر 2024</div>
+            <div class="timeline-text">
+              عبر حالة واتساب بدأت الحكاية،
+              ومن شيء بسيط جدًا...
+              بدأ شعور كبير جدًا.
+              بعض البدايات لا تبدو عظيمة، لكنها تغيّر القلب كله.
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-index">03</div>
+            <div class="timeline-title">لحظة الأمان</div>
+            <div class="timeline-date">7 أكتوبر 2024</div>
+            <div class="timeline-text">
+              لم تكن مجرد لمسة يد...
+              كانت لحظة شعر فيها القلب أن الأمان قد يأتي أحيانًا في ثانية واحدة،
+              لكنه يظل يسكن الذاكرة طويلًا جدًا.
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-index">04</div>
+            <div class="timeline-title">موعد مع الفاتنة</div>
+            <div class="timeline-date">26 ديسمبر 2024</div>
+            <div class="timeline-text">
+              عند شروق هذا اليوم، كان هناك موعد لا يشبه أي موعد،
+              لأن اللقاء حين يكون مع شروق،
+              يصبح الصباح نفسه ذكرى،
+              وتصبح الذكرى شيئًا يضيء العمر.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">كلام يتجدد كل مرة</h2>
+        <p class="section-subtitle">كل ضغطة تعطي رسالة جديدة... كأن القلب يعيد وصف شروق بطريقة أجمل.</p>
+
+        <div class="quote-box">
+          <div class="quote" id="quoteBox">
+            شروق... يكفي أن اسمكِ يمر على القلب حتى تتبدل قسوة اليوم إلى هدوء جميل.
+          </div>
+
+          <div class="hero-buttons">
+            <button class="btn btn-main" onclick="showQuote()">رسالة أخرى 💌</button>
+            <button class="btn btn-soft" onclick="scrollToTopSmooth()">العودة للبداية ✨</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass">
+        <h2 class="section-title">الخاتمة التي لا تكفيكِ</h2>
+        <p class="section-subtitle">لأن بعض الأسماء لا تكفيها صفحة واحدة... ولا تكفيها قصيدة واحدة.</p>
+
+        <div class="letter">
+          يا شروق،<br><br>
+          لو كان للجنة اسم يمشي بين الناس لكان اسمها أنتِ،
+          ولو كان للراحة وجه قريب من القلب لكان وجهكِ،
+          ولو كان للأيام الجميلة صوت لكان صوت حضوركِ في الروح.<br><br>
+
+          أنتِ الجمال حين يكون صادقًا،
+          وأنتِ الحنان حين يمرّ بهدوء،
+          وأنتِ تلك النعمة التي يخاف عليها القلب
+          لأنها أثمن من أن تُوصف بكلمات عابرة.<br><br>
+
+          سيبقى اسمكِ في القلب
+          لا لأنه جميل فقط،
+          بل لأنه صار جزءًا من الشعور،
+          وجزءًا من الدعاء،
+          وجزءًا من كل شيء يتمنى الإنسان ألا يفقده أبدًا.
+        </div>
+
+        <div class="signature">
+          من ماجد... إلى شروق 🌹<br>
+          إلى جنة العالم، وإلى الحكاية الأجمل، وإلى الاسم الذي يكفي وحده ليختصر كل الجمال.
+        </div>
+
+        <div class="final-glow">
+          شروق... أنتِ ليستِ مجرد ذكرى جميلة،<br>
+          أنتِ الشيء الجميل الذي كلما مرّ على القلب، شعر أنه ما زال حيًا. ❤️
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      صنعت هذه الصفحة بكل الحب، لتبقى ذكرى ناعمة باسم شروق ✨
+    </footer>
+  </div>
+
+  <script>
+    const quotes = [
+      "شروق... يكفي أن اسمكِ يمر على القلب حتى تتبدل قسوة اليوم إلى هدوء جميل.",
+      "أنتِ جنة العالم في عين من أحبكِ، ونعمة لا تشبه شيئًا عابرًا.",
+      "في حضوركِ يصبح كل شيء ألطف، وكأن الحياة تتذكر فجأة كيف تكون جميلة.",
+      "شروق، كأن الله وضع في اسمكِ نورًا، وفي روحكِ سلامًا، وفي قربكِ راحة لا توصف.",
+      "أنتِ ليستِ مجرد حكاية حب، أنتِ الحكاية التي تعلّم القلب كيف يبتسم.",
+      "بعض الناس يُنسَون، أما أنتِ فتبقين كأنكِ أثر من الجنة مرّ على الروح.",
+      "لو سألوني عن أجمل نعمة مرّت على القلب، لقلت: اسمها شروق.",
+      "فيكِ شيء يجعل الدعاء أجمل، والذكرى أدفأ، والوقت معكِ أحنّ.",
+      "أنتِ الفاتنة التي جعلت من الصباح ذكرى، ومن الذكرى وطنًا للقلب.",
+      "عندما أجد نفسي أمامكِ أرى شعاع النور يحيط أرجاء الكون.",
+      "ويختبئ في صدري ثلاثة أشياء: أمنية بيضاء، وحلم بريء، وأنتِ.",
+      "أنتِ شَهدي وشتائي، وشغفي، وشبيهة القمر."
+    ];
+
+    const typeText = "شروق... في عالم مزدحم بكل شيء، كنتِ أنتِ الشيء الأجمل، والأهدأ، والأصدق، والأقرب إلى القلب.";
+
+    let typeIndex = 0;
+    let typingStarted = false;
+
+    function enterPage(){
+      document.getElementById("intro").classList.add("hide");
+      if(!typingStarted){
+        typingStarted = true;
+        startTypewriter();
+      }
+    }
+
+    function showQuote(){
+      const box = document.getElementById("quoteBox");
+      box.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    }
+
+    function playMusic(){
+      const audio = document.getElementById("bgMusic");
+      audio.play().catch(() => {
+        alert("أضف ملف موسيقى باسم music.mp3 داخل نفس المجلد ليعمل الزر 🎵");
+      });
+    }
+
+    function scrollToTopSmooth(){
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function startTypewriter(){
+      const box = document.getElementById("typewriterBox");
+      box.textContent = "";
+      typeIndex = 0;
+
+      function type(){
+        if(typeIndex < typeText.length){
+          box.textContent += typeText.charAt(typeIndex);
+          typeIndex++;
+          setTimeout(type, 55);
+        }
+      }
+      type();
+    }
+
+    function updateCounter(){
+      const startDate = new Date("2024-09-02T00:00:00");
+      const now = new Date();
+      const diff = now - startDate;
+
+      const totalSeconds = Math.max(0, Math.floor(diff / 1000));
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    function createStars(){
+      const container = document.getElementById("stars");
+      for(let i = 0; i < 38; i++){
+        const star = document.createElement("div");
+        star.className = "star";
+        star.innerHTML = "✦";
+        star.style.top = Math.random() * 100 + "vh";
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.fontSize = (Math.random() * 10 + 8) + "px";
+        star.style.animationDelay = (Math.random() * 4) + "s";
+        container.appendChild(star);
+      }
+    }
+
+    function createHeart(){
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 18 + 14) + "px";
+      heart.style.animationDuration = (Math.random() * 4 + 6) + "s";
+      document.getElementById("hearts").appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    function createPetal(){
+      const petal = document.createElement("div");
+      petal.className = "petal";
+      petal.innerHTML = "✿";
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.fontSize = (Math.random() * 10 + 12) + "px";
+      petal.style.animationDuration = (Math.random() * 5 + 7) + "s";
+      document.getElementById("petals").appendChild(petal);
+      setTimeout(() => petal.remove(), 13000);
+    }
+
+    function createSpark(){
+      const spark = document.createElement("div");
+      spark.className = "spark";
+      spark.innerHTML = "✧";
+      spark.style.left = Math.random() * 100 + "vw";
+      spark.style.fontSize = (Math.random() * 8 + 10) + "px";
+      spark.style.animationDuration = (Math.random() * 4 + 7) + "s";
+      document.getElementById("sparkles").appendChild(spark);
+      setTimeout(() => spark.remove(), 12000);
+    }
+
+    function createButterfly(){
+      const butterfly = document.createElement("div");
+      butterfly.className = "butterfly";
+      butterfly.innerHTML = "🦋";
+      butterfly.style.left = (-10 + Math.random() * 20) + "vw";
+      butterfly.style.top = (65 + Math.random() * 25) + "vh";
+      butterfly.style.animationDuration = (Math.random() * 6 + 8) + "s";
+      butterfly.style.fontSize = (Math.random() * 8 + 14) + "px";
+      document.getElementById("butterflies").appendChild(butterfly);
+      setTimeout(() => butterfly.remove(), 14000);
+    }
+
+    createStars();
+    updateCounter();
+    setInterval(updateCounter, 1000);
+    setInterval(createHeart, 340);
+    setInterval(createPetal, 900);
+    setInterval(createSpark, 650);
+    setInterval(createButterfly, 2200);
+
+    setTimeout(() => {
+      if(!typingStarted){
+        typingStarted = true;
+        startTypewriter();
+      }
+    }, 1200);
+  </script>
+</body>
+</html>
